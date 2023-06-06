@@ -1,9 +1,16 @@
 import React from 'react';
 import logo from '../../assets/icons/logo-bornonala-final.png';
 import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const user=1
+    const { user, logout }=useContext(AuthProviderContext)
+    console.log(user);
+
+    const handelLogout=()=>{
+        logout()
+    }
     const navLinks=<>
         <li> <NavLink
             to={"/"}
@@ -26,10 +33,12 @@ const Header = () => {
             user&&user?<>
                 <li> <NavLink to={"/dashboard"} className={({ isActive }) => isActive ? "underline text-xl mr-3" : " text-xl mr-3"} >DashBoard </NavLink></li>
                 <div className="avatar mr-4">
-                    <div className="w-8 rounded-full">
-                        <img className='w-12' src="https://img.freepik.com/free-photo/woman-with-long-hair-yellow-hoodie-with-word-music-it_1340-39068.jpg?w=740&t=st=1686069378~exp=1686069978~hmac=4a793b01d839b160207a759d36ae0ebba2a3414968768aa91cd5694c50f7f9b5" />
+                    
+                    <div className="w-8 rounded mx-auto my-10 md:my-0">
+                        <img className='w-12' src={user && user?.photoURL ? user?.photoURL :"https://i.ibb.co/3vB2C0M/chef-57.png"}  /> 
                     </div>
                 </div>
+                <button onClick={handelLogout} className="btn btn-success px-10 font-bold">Logout</button>
 
             </>:<>
                     <Link to={"/login"}><button className="btn btn-success px-10 font-bold">Login</button></Link>
@@ -50,6 +59,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <Link to={"/"}> <img className='w-64' src={logo} alt="" /></Link>
+                
                 {/* <p className="text-xl font-bold">Bornomala Academy</p> */}
             </div>
             <div className="navbar-end hidden lg:flex">
