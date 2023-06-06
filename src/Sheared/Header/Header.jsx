@@ -1,11 +1,42 @@
 import React from 'react';
 import logo from '../../assets/icons/logo-bornonala-final.png';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
+    const user=1
     const navLinks=<>
-        <li><a>Item 1</a></li>
-        <li><a>Item 3</a></li>
+        <li> <NavLink
+            to={"/"}
+            className={({ isActive }) =>
+                isActive ? "underline text-xl" : " text-xl"
+            }
+        >
+            Home
+        </NavLink></li>
+        <li> <NavLink
+            to={"/instructors"}
+            className={({ isActive }) =>
+                isActive ? "underline text-xl" : " text-xl"
+            }
+        >
+            Instructors
+        </NavLink></li>
+        <li> <NavLink  to={"/classes"} className={({ isActive }) =>isActive ? "underline text-xl" : " text-xl"  } >Classes </NavLink></li>
+        {
+            user&&user?<>
+                <li> <NavLink to={"/dashboard"} className={({ isActive }) => isActive ? "underline text-xl mr-3" : " text-xl mr-3"} >DashBoard </NavLink></li>
+                <div className="avatar mr-4">
+                    <div className="w-8 rounded-full">
+                        <img className='w-12' src="https://img.freepik.com/free-photo/woman-with-long-hair-yellow-hoodie-with-word-music-it_1340-39068.jpg?w=740&t=st=1686069378~exp=1686069978~hmac=4a793b01d839b160207a759d36ae0ebba2a3414968768aa91cd5694c50f7f9b5" />
+                    </div>
+                </div>
+
+            </>:<>
+                    <Link to={"/login"}><button className="btn btn-success px-10 font-bold">Login</button></Link>
+            </>
+        
+        }
+        
     </>
     return (
         <div className="navbar bg-base-100">
@@ -21,13 +52,10 @@ const Header = () => {
                 <Link to={"/"}> <img className='w-64' src={logo} alt="" /></Link>
                 {/* <p className="text-xl font-bold">Bornomala Academy</p> */}
             </div>
-            <div className="navbar-center hidden lg:flex">
+            <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                 {navLinks}
                 </ul>
-            </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
             </div>
         </div>
     );
