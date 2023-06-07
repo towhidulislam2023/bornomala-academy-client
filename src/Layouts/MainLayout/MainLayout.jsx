@@ -5,7 +5,7 @@ import Footer from '../../Sheared/Footer/Footer';
 
 const MainLayout = () => {
     return (
-        <div className='w-[80%] mx-auto'>
+        <div className='md:w-[80%] mx-auto px-6 md:px-0'>
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>

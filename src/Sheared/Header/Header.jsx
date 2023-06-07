@@ -3,11 +3,13 @@ import logo from '../../assets/icons/logo-bornonala-final.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
-import UsePopularClassess from '../../hook/usePopularClasses/UsePopularClassess';
+import UseBestInstructors from '../../hook/UseBestInstructors/UseBestInstructors';
+
+
 
 const Header = () => {
-    const [PopularClasses]=UsePopularClassess()
-    console.log(PopularClasses);
+    const [instructors]=UseBestInstructors()
+    console.log("instructors", instructors);
     const { user, logout } = useContext(AuthProviderContext);
     console.log(user);
 
@@ -93,7 +95,7 @@ const Header = () => {
                     <img className='w-64' src={logo} alt="" />
                 </Link>
             </div>
-            <div className="navbar-end hidden lg:flex">
+            <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navLinks}
                 </ul>

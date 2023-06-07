@@ -18,8 +18,8 @@ const ClassCard = ({popularclass}) => {
                 <span className='flex items-center text-2xl gap-5'><FaUsers className='text-2xl text-green-900' title='Total Students'></FaUsers> {totalStudent}</span>
                 <span className='flex items-center text-2xl gap-5'><FaChalkboardTeacher className='text-2xl text-green-900' title='Instructor'></FaChalkboardTeacher> {popularclass.instructor}</span>
                 <span className='flex items-center text-2xl gap-5'><FaDollarSign className='text-2xl text-green-900' title='Instructor'></FaDollarSign> {popularclass.price}</span>
-                <div className="card-actions">
-                    <button className="btn btn-block btn-success">Buy Now</button>
+                <div className="card-actions mt-auto">
+                    <button className="btn btn-block  btn-success">Buy Now</button>
                 </div>
             </div>
         </div>

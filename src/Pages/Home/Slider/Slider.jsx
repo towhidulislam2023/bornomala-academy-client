@@ -28,7 +28,7 @@ const Slider = () => {
                     <div className='bg-black'>
                         <img src={img2} className=' opacity-60  h-[80vh] relative w-[100%]' alt="" />
                         <div className=' text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className="text-3xl md:text-5xl  text-yellow-600 text-center font-extrabold shadow-lg">Building Bridges through Language Proficiency</h1>
-                            <Link to={"/"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link>
+                            <Link to={"/classes"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link>
                         
                         </div> 
                         </div>                   
@@ -37,28 +37,28 @@ const Slider = () => {
                     
                     <div className='bg-black'>
                         <img src={img1} className=' opacity-60  h-[80vh] relative w-[100%]' alt="" />
-                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className="text-3xl md:text-5xl  text-yellow-600 text-center font-extrabold ">Language Fluency, Boundless Possibilities</h1> <Link to={"/"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
+                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className="text-3xl md:text-5xl  text-yellow-600 text-center font-extrabold ">Language Fluency, Boundless Possibilities</h1> <Link to={"/classes"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
                     </div>                  
                     </SwiperSlide>
                 <SwiperSlide>
                     
                     <div className='bg-black'>
                         <img src={img3} className=' opacity-60  h-[80vh] relative w-[100%]' alt="" />
-                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className="text-3xl md:text-5xl  text-yellow-600 text-center font-extrabold ">Language Fluency, Boundless Possibilities</h1> <Link to={"/"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
+                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className="text-3xl md:text-5xl  text-yellow-600 text-center font-extrabold ">Language Fluency, Boundless Possibilities</h1> <Link to={"/classes"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
                     </div>               
                     </SwiperSlide>
                 <SwiperSlide>
                     
                     <div className='bg-black'>
                         <img src={img4} className=' opacity-60  h-[80vh] relative w-[100%]' alt="" />
-                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className="text-3xl md:text-5xl  text-yellow-600 text-center font-extrabold ">Empowering Minds through Language</h1><Link to={"/"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
+                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className="text-3xl md:text-5xl  text-yellow-600 text-center font-extrabold ">Empowering Minds through Language</h1><Link to={"/classes"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
                     </div>                  
                     </SwiperSlide>
                 <SwiperSlide>
                     
                     <div className='bg-black'>
                         <img src={img5} className=' opacity-60  h-[80vh] relative w-[100%]' alt="" />
-                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className=" text-3xl md:text-5xl text-yellow-600 text-center font-extrabold ">Fluent in the Language of Opportunity</h1><Link to={"/"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
+                        <div className='text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '><h1 className=" text-3xl md:text-5xl text-yellow-600 text-center font-extrabold ">Fluent in the Language of Opportunity</h1><Link to={"/classes"}> <button className="btn btn-success my-10">Explore Our Courses</button></Link></div>
                     </div>                   
                     </SwiperSlide>
                 
