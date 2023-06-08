@@ -3,13 +3,13 @@ import logo from '../../assets/icons/logo-bornonala-final.png';
 import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
-import UseBestInstructors from '../../hook/UseBestInstructors/UseBestInstructors';
+import UseInstructors from '../../hook/UseInstructors/UseInstructors';
 
 
 
 const Header = () => {
-    const [instructors]=UseBestInstructors()
-    console.log("instructors", instructors);
+    const [allInstructors]=UseInstructors()
+    console.log("instructors", allInstructors);
     const { user, logout } = useContext(AuthProviderContext);
     console.log(user);
 
