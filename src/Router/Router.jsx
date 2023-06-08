@@ -8,6 +8,7 @@ import InstractorDetails from "../Pages/InstractorDetails/InstractorDetails";
 import Instructor from "../Pages/Instructor/Instructor";
 import DashBoardLayout from "../Layouts/DashBoardLayout/DashBoardLayout";
 import DashBoard from "../Pages/DashBoard/DashBoard/DashBoard";
+import SelectedClasses from "../Pages/DashBoard/SelectedClasses/SelectedClasses";
 
 const router = createBrowserRouter([
     {
@@ -46,10 +47,13 @@ const router = createBrowserRouter([
     {
         path:"/dashboard",
         element:<DashBoardLayout></DashBoardLayout>,
-        children:[{
-            path:"/dashboard",
-            element:<DashBoard></DashBoard>
-        }]
+        children:[
+        {
+            path: "/dashboard/selectedClasses",
+            element: <SelectedClasses></SelectedClasses>,
+        }
+    
+    ]
     }
 ]);
 export default router

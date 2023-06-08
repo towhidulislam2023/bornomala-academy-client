@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaChalkboardTeacher, FaDollarSign, FaUsers } from 'react-icons/fa';
 import UseAuthorizarion from '../../hook/UseAuthorization/UseAuthorizarion';
+import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
+import useAxiosSecure from '../../hook/useAxiosSecure/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const ClassCard = ({ popularclass }) => {
+    const {user}=useContext(AuthProviderContext)
+    const [axiosSecure]=useAxiosSecure()
+    const handelSelect=(classDetails)=>{
+        if (user) {
+            const selectedClass = { studentName: user.displayName, studentEmail: user.email, courseName: classDetails.name, courseInstructorName: classDetails.instructor, CourseBannar: classDetails.image , price: classDetails.price}
+            console.log(selectedClass);
+            axiosSecure.post("carts", selectedClass)
+            .then(res=>{
+                console.log(res.data)
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `You Successfully Select ${classDetails.name} ` ,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    
+                }
+            })
+            
+        }
+        
+
+    }
     const [userRole] = UseAuthorizarion()
     const totalStudent = popularclass.totalSeats - popularclass.availableSeats
     return (
@@ -21,7 +49,7 @@ const ClassCard = ({ popularclass }) => {
                 <span className='flex items-center text-2xl gap-5'><FaChalkboardTeacher className='text-2xl text-green-900' title='Instructor'></FaChalkboardTeacher> {popularclass.instructor}</span>
                 <span className='flex items-center text-2xl gap-5'><FaDollarSign className='text-2xl text-green-900' title='Instructor'></FaDollarSign> {popularclass.price}</span>
                 <div className="card-actions mt-auto">
-                    <button disabled={popularclass.availableSeats === 0 || userRole === "admin" || userRole === "instructor"} className="btn btn-block  btn-success">Buy Now</button>
+                    <button onClick={() => handelSelect(popularclass)} disabled={popularclass.availableSeats === 0 || userRole === "admin" || userRole === "instructor"} className="btn btn-block  btn-success">Select</button>
                 </div>
             </div>
         </div>

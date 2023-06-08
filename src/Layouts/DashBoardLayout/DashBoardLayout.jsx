@@ -15,7 +15,7 @@ const DashBoardLayout = () => {
     const userNavLinks = <>
         <li>
             <NavLink
-                to={"/selectedClasses"}
+                to={"/dashboard/selectedClasses"}
                 className={({ isActive }) =>
                     isActive ? "underline" : ""
                 }
@@ -82,7 +82,7 @@ const DashBoardLayout = () => {
         <div className='md:w-[80%] mx-auto px-6 md:px-0' >
             <Header></Header>
             <div className='grid md:grid-cols-12 gap-10'>
-                <div className='md:col-span-3  md:h-[40vh] bg-green-200'>
+                <div className='md:col-span-3   bg-green-200'>
                     <img src={logo} alt="" />
                     <p className='text-center'> Hi , {user&& user.displayName}</p>
                     <ul className="menu  md:block  w-56 rounded-box  font-bold ">
