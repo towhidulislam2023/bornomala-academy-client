@@ -7,9 +7,14 @@ import Classes from "../Pages/Classes/Classes";
 import InstractorDetails from "../Pages/InstractorDetails/InstractorDetails";
 import Instructor from "../Pages/Instructor/Instructor";
 import DashBoardLayout from "../Layouts/DashBoardLayout/DashBoardLayout";
-import DashBoard from "../Pages/DashBoard/DashBoard/DashBoard";
 import SelectedClasses from "../Pages/DashBoard/SelectedClasses/SelectedClasses";
 import Payment from "../Pages/DashBoard/Payment/Payment";
+import ManageUser from "../Pages/DashBoard/ManageUser/ManageUser";
+import ManageClasses from "../Pages/DashBoard/ManageClasses/ManageClasses";
+import AddClass from "../Pages/DashBoard/AddClass/AddClass";
+import MyClasses from "../Pages/DashBoard/MyClasses/MyClasses";
+import EnrolledClasses from "../Pages/DashBoard/EnrolledClasses/EnrolledClasses";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -47,11 +52,31 @@ const router = createBrowserRouter([
     },
     {
         path:"/dashboard",
-        element:<DashBoardLayout></DashBoardLayout>,
+        element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
         children:[
         {
             path: "/dashboard/selectedClasses",
             element: <SelectedClasses></SelectedClasses>,
+        },
+        {
+            path: "/dashboard/enrolledClasses",
+            element: <EnrolledClasses></EnrolledClasses>,
+        },
+        {
+            path: "/dashboard/manageUsers",
+            element: <ManageUser></ManageUser>,
+        },
+        {
+            path: "/dashboard/manageClasses",
+            element: <ManageClasses></ManageClasses>,
+        },
+        {
+            path: "/dashboard/addAClass",
+            element: <AddClass></AddClass>,
+        },
+        {
+            path: "/dashboard/myClasses",
+            element: <MyClasses></MyClasses>,
         },
         {
             path: "/dashboard/payment",

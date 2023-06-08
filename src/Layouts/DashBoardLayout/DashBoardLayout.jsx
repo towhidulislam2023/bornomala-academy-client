@@ -25,7 +25,7 @@ const DashBoardLayout = () => {
         </li>
         <li>
             <NavLink
-                to={"/enrolledClasses"}
+                to={"/dashboard/enrolledClasses"}
                 className={({ isActive }) =>
                 isActive ? "underline " : " "
                 }
@@ -37,17 +37,17 @@ const DashBoardLayout = () => {
     const AdminNavLinks = <>
         <li>
             <NavLink
-                to={"/manageUsers"}
+                to={"/dashboard/manageUsers"}
                 className={({ isActive }) =>
                     isActive ? "underline text-xl" : " text-xl"
-                }
+                } 
             >
-                <FaUsers></FaUsers> Manage Users
+                <FaUsers></FaUsers> Manage Users 
             </NavLink>
         </li>
         <li>
             <NavLink
-                to={"/manageClasses"}
+                to={"/dashboard/manageClasses"}
                 className={({ isActive }) =>
                     isActive ? "underline text-xl" : " text-xl"
                 }
@@ -59,8 +59,8 @@ const DashBoardLayout = () => {
     const instructorsNAvLinks = <>
         <li>
             <NavLink
-                to={"/addAClass"}
-                className={({ isActive }) =>
+                to={"/dashboard/addAClass"}
+            className={({ isActive }) =>
                     isActive ? "underline text-xl" : " text-xl"
                 }
             >
@@ -69,7 +69,7 @@ const DashBoardLayout = () => {
         </li>
         <li>
             <NavLink
-                to={"/myClasses"}
+                to={"/dashboard/myClasses"}
                 className={({ isActive }) =>
                     isActive ? "underline text-xl" : " text-xl"
                 }

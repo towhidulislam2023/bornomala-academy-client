@@ -33,82 +33,78 @@ const CheckoutForm = ({ cart, price }) => {
         event.preventDefault();
 
         if (!stripe || !elements) {
-            return
+            return;
         }
 
         const card = elements.getElement(CardElement);
         if (card === null) {
-            return
+            return;
         }
 
-        const { error } = await stripe.createPaymentMethod({
+        const { error: paymentMethodError, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
-            card
-        })
+            card,
+        });
 
-        if (error) {
-            console.log('error', error)
-            setCardError(error.message);
-        }
-        else {
-            setCardError('');
-            // console.log('payment method', paymentMethod)
+        if (paymentMethodError) {
+            console.log('Payment method error:', paymentMethodError);
+            setCardError(paymentMethodError.message);
+            return;
         }
 
-        setProcessing(true)
+        setProcessing(true);
 
-        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
-            clientSecret,
-            {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                        email: user?.email || 'unknown',
-                        name: user?.displayName || 'anonymous'
-                    },
-                },
-            },
-        );
+        try {
+            const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+                clientSecret,
+                {
+                    payment_method: paymentMethod.id,
+                }
+            );
 
-        if (confirmError) {
-            console.log(confirmError);
-        }
-
-        console.log('payment intent', paymentIntent)
-        setProcessing(false)
-        if (paymentIntent.status === 'succeeded') {
-            setTransactionId(paymentIntent.id);
-            // save payment information to the server
-            const payment = {
-                email: user?.email,
-                transactionId: paymentIntent.id,
-                price,
-                date: new Date(),
-                quantity: cart.length,
-                courseId: cart.map(item => item._id),
-                courseInstractorsEmail: cart.map(items => items.instructorEmail),
-                courseName: cart.map(item => item.courseName)
+            if (confirmError) {
+                console.log('Confirm error:', confirmError);
+                setProcessing(false);
+                return;
             }
-            axiosSecure.post('/payments', payment)
-                .then(res => {
-                    console.log(res.data);
-                    if (res.data.insertResult.insertedId) {
-                        // display confirm
-                        
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Payment Confirm Succsfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        navigate("/")
-                    }
-                })
+
+            console.log('Payment intent:', paymentIntent);
+
+            if (paymentIntent && paymentIntent.status === 'succeeded') {
+                setTransactionId(paymentIntent.id);
+                // Save payment information to the server
+                const payment = {
+                    email: user?.email,
+                    transactionId: paymentIntent.id,
+                    price,
+                    date: new Date(),
+                    quantity: cart.length,
+                    courseId: cart.map(item => item._id),
+                    courseInstractorsEmail: cart.map(items => items.instructorEmail),
+                    courseName: cart.map(item => item.courseName)
+                };
+
+                axiosSecure.post('/payments', payment)
+                    .then(res => {
+                        console.log(res.data);
+                        if (res.data.insertResult.insertedId) {
+                            // Display confirmation
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Payment Confirmed Successfully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            navigate("/");
+                        }
+                    });
+            }
+        } catch (error) {
+            console.log('Error during payment:', error);
+            setProcessing(false);
         }
-
-
-    }
+    };
 
     return (
         <>
