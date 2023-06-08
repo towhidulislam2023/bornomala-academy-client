@@ -4,7 +4,7 @@ import ClassCard from '../../Sheared/ClassCard/ClassCard';
 
 const Classes = () => {
     const [classes] = UseClasses()
-    console.log(classes);
+    // console.log(classes);
     return (
         <div className='my-10'>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-10 mx-auto'>

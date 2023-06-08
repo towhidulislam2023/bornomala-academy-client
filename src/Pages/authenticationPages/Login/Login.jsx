@@ -14,7 +14,7 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         console.log(data);
-        logInuser(data.email, data.password)
+        logInuser(data?.email, data?.password)
             .then(result => {
                 console.log(result.user);
                 navigate(from, { replace: true })
@@ -31,6 +31,7 @@ const Login = () => {
             </div>
             <div className='  md:w-[50%]'>
                 <h1 className="text-4xl font-extrabold">Login</h1>
+                    {error}
                     <div className="divider"></div>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)} className='my-12'>
