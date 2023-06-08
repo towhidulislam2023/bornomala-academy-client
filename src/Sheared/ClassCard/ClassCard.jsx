@@ -4,19 +4,43 @@ import UseAuthorizarion from '../../hook/UseAuthorization/UseAuthorizarion';
 import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
 import useAxiosSecure from '../../hook/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2';
+import UsePaymentProduct from '../../hook/UsePaymentProduct/UsePaymentProduct';
+import UseCart from '../../hook/UseCart/UseCart';
 
 const ClassCard = ({ popularclass }) => {
+    const [Payclasses]=UsePaymentProduct()
+    console.log(Payclasses);
+    const [carts ,refetch]=UseCart()
     const {user}=useContext(AuthProviderContext)
     const [axiosSecure]=useAxiosSecure()
     const handelSelect=(classDetails)=>{
+        const alreadypayedcourse= Payclasses && Payclasses.find(pay=>pay._id===classDetails._id)
+        if (alreadypayedcourse) {
+            Swal.fire({
+                icon: 'error',
+                title: 'You Already Buy The Courses',
+                text: 'Something went wrong!',
+            })     
+            return       
+        }
+        const alreadyAddedcourse = carts && carts.find(pay => pay.courseId ===classDetails._id)
+        if (alreadyAddedcourse) {
+            Swal.fire({
+                icon: 'error',
+                title: 'You Already Added The Courses',
+                text: 'Something went wrong!',
+            })     
+            return       
+        }
         console.log(classDetails);
         if (user) {
-            const selectedClass = { studentName: user.displayName, studentEmail: user.email, courseName: classDetails.name, courseInstructorName: classDetails.instructor, CourseBannar: classDetails.image, price: classDetails.price, instructorEmail: classDetails.email}
+            const selectedClass = { studentName: user.displayName, studentEmail: user.email, courseName: classDetails.name, courseInstructorName: classDetails.instructor, CourseBannar: classDetails.image, price: classDetails.price, instructorEmail: classDetails.email, courseId:classDetails._id}
             console.log(selectedClass);
             axiosSecure.post("carts", selectedClass)
             .then(res=>{
                 console.log(res.data)
                 if (res.data.insertedId) {
+                    refetch()
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',

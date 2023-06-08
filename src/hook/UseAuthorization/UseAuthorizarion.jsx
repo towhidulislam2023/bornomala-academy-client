@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 const UseAuthorizarion = () => {
     const { user, loading } = useContext(AuthProviderContext)
     const [axiosSecure] = useAxiosSecure()
-    const { refetch, data: userRole = {} } = useQuery({
+    const { refetch, data: userRole = {}, isLoading:isAuthLoading } = useQuery({
         queryKey: ['authorization'],
         enabled: !loading,
         queryFn: async () => {
@@ -17,7 +17,7 @@ const UseAuthorizarion = () => {
            }
         },
     })
-    return [userRole, refetch]
+    return [userRole, isAuthLoading, refetch, ]
 };
 
 export default UseAuthorizarion;

@@ -79,7 +79,8 @@ const CheckoutForm = ({ cart, price }) => {
                     price,
                     date: new Date(),
                     quantity: cart.length,
-                    courseId: cart.map(item => item._id),
+                    cartItemId:cart.map(item=>item._id),
+                    courseId: cart.map(item => item.courseId),
                     courseInstractorsEmail: cart.map(items => items.instructorEmail),
                     courseName: cart.map(item => item.courseName)
                 };
@@ -89,6 +90,7 @@ const CheckoutForm = ({ cart, price }) => {
                         console.log(res.data);
                         if (res.data.insertResult.insertedId) {
                             // Display confirmation
+                            
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -130,7 +132,7 @@ const CheckoutForm = ({ cart, price }) => {
                 </button>
             </form>
             {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
-            {transactionId && <p className="text-green-500">Transaction complete with transactionId: {transactionId}</p>}
+            {transactionId && <p className="text-green-950">TransactionId: {transactionId}</p>}
         </>
     );
 };
