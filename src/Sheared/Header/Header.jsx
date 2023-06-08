@@ -53,7 +53,7 @@ const Header = () => {
                 <>
                     <li>
                         <NavLink
-                            to={"/dashboard"}
+                            to={`${userRole === "user" ? "/dashboard/selectedClasses" : userRole === "admin" ? "/dashboard/manageUsers" : userRole === "instructor" ?"/dashboard/addAClass":null}`}
                             className={({ isActive }) =>
                                 isActive ? "underline text-xl mr-3" : " text-xl mr-3"
                             }
@@ -79,7 +79,7 @@ const Header = () => {
     );
 
     return (
-        <div className="navbar bg-base-100 z-10 sticky top-0 ">
+        <div className="navbar w-full bg-base-100 z-10 sticky top-0 ">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden z-10">

@@ -82,10 +82,10 @@ const DashBoardLayout = () => {
         <div className='md:w-[80%] mx-auto px-6 md:px-0' >
             <Header></Header>
             <div className='grid md:grid-cols-12 gap-10'>
-                <div className='md:col-span-3   bg-green-200'>
-                    <img src={logo} alt="" />
+                <div className='md:col-span-3 w-[95%] bg-green-200'>
+                    <img className='w-56 mx-auto' src={logo} alt="" />
                     <p className='text-center'> Hi , {user&& user.displayName}</p>
-                    <ul className="menu  md:block  w-56 rounded-box  font-bold ">
+                    <ul className="menu  md:block   rounded-box  font-bold ">
                         {
                             userRole && userRole === "user" ? userNavLinks :
                                 userRole === "instructor" ? instructorsNAvLinks :

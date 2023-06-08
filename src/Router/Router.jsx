@@ -9,6 +9,7 @@ import Instructor from "../Pages/Instructor/Instructor";
 import DashBoardLayout from "../Layouts/DashBoardLayout/DashBoardLayout";
 import DashBoard from "../Pages/DashBoard/DashBoard/DashBoard";
 import SelectedClasses from "../Pages/DashBoard/SelectedClasses/SelectedClasses";
+import Payment from "../Pages/DashBoard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
         {
             path: "/dashboard/selectedClasses",
             element: <SelectedClasses></SelectedClasses>,
-        }
+        },
+        {
+            path: "/dashboard/payment",
+            element: <Payment></Payment>,
+        },
     
     ]
     }

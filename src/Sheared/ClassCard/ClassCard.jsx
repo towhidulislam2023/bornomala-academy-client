@@ -9,8 +9,9 @@ const ClassCard = ({ popularclass }) => {
     const {user}=useContext(AuthProviderContext)
     const [axiosSecure]=useAxiosSecure()
     const handelSelect=(classDetails)=>{
+        console.log(classDetails);
         if (user) {
-            const selectedClass = { studentName: user.displayName, studentEmail: user.email, courseName: classDetails.name, courseInstructorName: classDetails.instructor, CourseBannar: classDetails.image , price: classDetails.price}
+            const selectedClass = { studentName: user.displayName, studentEmail: user.email, courseName: classDetails.name, courseInstructorName: classDetails.instructor, CourseBannar: classDetails.image, price: classDetails.price, instructorEmail: classDetails.email}
             console.log(selectedClass);
             axiosSecure.post("carts", selectedClass)
             .then(res=>{
