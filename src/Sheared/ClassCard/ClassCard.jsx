@@ -71,7 +71,7 @@ const ClassCard = ({ popularclass }) => {
     return (
         <div className={`card  ${popularclass.availableSeats === 0 ? "bg-green-100" : "bg-base-100"}  shadow-xl`}>
             <figure className="px-10 pt-10">
-                <img src={popularclass.image} alt="Shoes" className="rounded-xl relative md:h-[18rem]" />
+                <img src={popularclass.image} alt="Shoes" className="rounded-xl h-24 relative md:h-[18rem]" />
                 <div className="badge absolute badge-success gap-2">
                     <span> Available Seats</span> {popularclass.availableSeats}
                 </div>
