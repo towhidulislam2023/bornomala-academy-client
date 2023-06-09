@@ -12,12 +12,12 @@ const MyClasses = () => {
         queryFn: async () => {
            if (user) {
                const res = await axiosSecure(`/instructorclasses/${user.email}`)
-               console.log('res from axios', res)
+            //    console.log('res from axios', res)
                return res.data;
            }
         },
     })
-    console.log(myclasses);
+    // console.log(myclasses);
     return (
         <div>
         <h1>This is My Class page</h1>
@@ -29,7 +29,7 @@ const MyClasses = () => {
                     <div className='md:flex-grow'>
                         <div className='flex'>
                             <p className='text-xl'> Course Name: <span className='font-bold'> {classes.name} </span></p> <div className={`badge {
-                                ${classes.status==="approve"?"badge-success":"badge-error"}
+                                ${classes.status==="approved"?"badge-success":"badge-error"}
                             } `}>{classes.status}</div>
                         </div>
                         <p className='text-xl my-2'> course Teacher:<span className='font-semibold'> {classes.instructor} </span> </p>

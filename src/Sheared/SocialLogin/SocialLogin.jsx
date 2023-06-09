@@ -13,10 +13,10 @@ const SocialLogin = () => {
     const handelLoginByGoogle = () => {
         handelGoogleLogin()
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 const userInfo = {
                     name: result.user.displayName, email: result.user.email, photo: result.user.photoURL, role: "user" }
-                console.log(userInfo, "update user info");
+                // console.log(userInfo, "update user info");
                 axiosSecure.post("/users", userInfo)
                     .then(info => {
                         if (info.data.insertedId) {

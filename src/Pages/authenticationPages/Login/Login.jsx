@@ -13,10 +13,10 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/"
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         logInuser(data?.email, data?.password)
             .then(result => {
-                console.log(result.user);
+                // console.log(result.user);
                 navigate(from, { replace: true })
             })
             .catch(error => setError(error.message))

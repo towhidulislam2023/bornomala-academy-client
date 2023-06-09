@@ -11,7 +11,7 @@ const UseInstructors = () => {
         enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure("/instructors")
-            console.log('res from axios', res)
+            // console.log('res from axios', res)
             return res.data;
         },
     })

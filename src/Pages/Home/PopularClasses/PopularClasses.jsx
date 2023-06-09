@@ -4,7 +4,7 @@ import ClassCard from '../../../Sheared/ClassCard/ClassCard';
 
 const PopularClasses = () => {
     const [popularClasses]=UsePopularClassess()
-    console.log(popularClasses);
+    // console.log(popularClasses);
     return (
         <div className='my-10'>
             <h1 className="text-3xl font-extrabold text-center">---Our Popular Classes--- </h1>

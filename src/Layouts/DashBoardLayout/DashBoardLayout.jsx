@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import Header from '../../Sheared/Header/Header';
 import Footer from '../../Sheared/Footer/Footer';
 import UseAuthorizarion from '../../hook/UseAuthorization/UseAuthorizarion';
-import { FaChalkboardTeacher, FaClipboardList, FaPlay, FaUsers } from 'react-icons/fa';
+import { FaBars, FaChalkboardTeacher, FaClipboardList, FaPlay, FaUsers, FaWallet } from 'react-icons/fa';
 import logo from '../../assets/icons/logo-bornonala-final.png';
 import { useContext } from 'react';
 import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
@@ -32,6 +32,16 @@ const DashBoardLayout = () => {
                 <FaPlay></FaPlay> Enrolled Classes
             </NavLink>
         </li>
+        <li>
+            <NavLink
+                to={"/dashboard/paymenthistory"}
+                className={({ isActive }) =>
+                isActive ? "underline " : " "
+                }
+            >
+                <FaWallet></FaWallet> Payment History
+            </NavLink>
+        </li>
     </>
     const AdminNavLinks = <>
         <li>
@@ -52,6 +62,14 @@ const DashBoardLayout = () => {
                 }
             >
                 <FaClipboardList></FaClipboardList> Manage Classes
+            </NavLink>
+            <NavLink
+                to={"/dashboard/manageallClasses"}
+                className={({ isActive }) =>
+                    isActive ? "underline text-xl" : " text-xl"
+                }
+            >
+                <FaBars></FaBars> Manage All Classes
             </NavLink>
         </li>
     </>

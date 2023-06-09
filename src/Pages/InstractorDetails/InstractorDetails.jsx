@@ -7,7 +7,7 @@ import UseCart from '../../hook/UseCart/UseCart';
 const InstractorDetails = () => {
     const [carts, refetch]=UseCart()
     const data = useLoaderData();
-    console.log(data, "from single");
+    // console.log(data, "from single");
     const [axiosSecure] = useAxiosSecure();
     const [classes, setClasses] = useState([]);
     useEffect(() => {
@@ -15,18 +15,18 @@ const InstractorDetails = () => {
             try {
                 if (data) {
                     const res = await axiosSecure(`/classes/${data.email}`);
-                    console.log('res from axios', res);
+                    // console.log('res from axios', res);
                     setClasses(res.data);
                 }
             } catch (error) {
-                console.log('Error fetching data:', error);
+                // console.log('Error fetching data:', error);
             }
         };
         
         refetch()
         fetchData();
     }, [data, axiosSecure]);
-    console.log(classes,"classwsasfvsdvds");
+    // console.log(classes,"classwsasfvsdvds");
     return (
         <div className='my-10'>
             <img className='w-[100%] rounded-lg md:h-[70vh] mx-auto' src={data&&data.image} alt="" />

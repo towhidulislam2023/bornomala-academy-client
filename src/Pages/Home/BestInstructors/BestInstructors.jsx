@@ -4,7 +4,7 @@ import DispalyInstructors from '../../../Sheared/DispalyInstructors/DispalyInstr
 
 const BestInstructors = () => {
     const [instructors, refetch]=UseBestInstructors()
-    console.log(instructors , " logged from bestInstractor");
+    // console.log(instructors , " logged from bestInstractor");
     return (
         <div className='mt-10'>
             <h1 className="text-3xl font-extrabold text-center">---Our Popular instructors--- </h1>

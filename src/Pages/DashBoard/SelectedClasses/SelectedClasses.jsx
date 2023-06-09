@@ -10,7 +10,7 @@ const SelectedClasses = () => {
     const [carts, refetch]=UseCart()
     const [axiosSecure]=useAxiosSecure()
     const total = carts.reduce((sum, item) => item.price + sum, 0);
-    console.log(carts , "from Selecterd class");
+    // console.log(carts , "from Selecterd class");
     const handleDelete=(item)=>{
 
         Swal.fire({
@@ -34,7 +34,7 @@ const SelectedClasses = () => {
                                 'success'
                             )
                         }
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
               
             }

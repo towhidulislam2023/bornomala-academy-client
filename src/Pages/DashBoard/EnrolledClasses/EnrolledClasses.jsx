@@ -3,7 +3,7 @@ import UsePaymentProduct from '../../../hook/UsePaymentProduct/UsePaymentProduct
 
 const EnrolledClasses = () => {
     const [Payclasses]=UsePaymentProduct()
-    console.log(Payclasses);
+    // console.log(Payclasses);
     return (
         <div>
             <h1 className='text-center text-4xl font-extrabold'>MY Enrolled Courses</h1>

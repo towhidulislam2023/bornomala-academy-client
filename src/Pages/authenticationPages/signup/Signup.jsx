@@ -24,10 +24,10 @@ const Signup = () => {
         else{
             signupuser(data.email, data.password)
                 .then(result => {
-                    console.log(result.user);
+                    // console.log(result.user);
                     updateUserinfo(data.name,data.photoUrl)
                     const userInfo={name:data.name, email:data.email, photo:data.photoUrl , role: "user"}
-                    console.log(userInfo,"update user info");
+                    // console.log(userInfo,"update user info");
                     axiosSecure.post("/users", userInfo)
                     .then(info=>{
                         if (info.data.insertedId) {
@@ -40,7 +40,7 @@ const Signup = () => {
                             })
                             
                         }
-                        console.log(info.data)
+                        // console.log(info.data)
                     })
                     navigate(from, { replace: true })
                 })

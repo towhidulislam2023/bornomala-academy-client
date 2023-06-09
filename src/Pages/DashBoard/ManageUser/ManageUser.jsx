@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import useAxiosSecure from '../../../hook/useAxiosSecure/useAxiosSecure';
 import { useQuery } from 'react-query';
 import { AuthProviderContext } from '../../../Provider/AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const ManageUser = () => {
     const { user, loading } = useContext(AuthProviderContext)
@@ -12,17 +13,64 @@ const ManageUser = () => {
         queryFn: async () => {
             if (user) {
                 const res = await axiosSecure(`/users`)
-                console.log('res from axios', res)
+                // console.log('res from axios', res)
                 return res.data;
             }
         },
     })
-    const handelUserRole=(event)=>{
-        const role = event.target.value
-        console.log(role);
-
+    const handelMakeAdmin = (userdetails) => {
+        // console.log(userdetails._id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `Do You Want to Make ${userdetails.name} is an Admin?`,
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#00FF00',
+            confirmButtonText: 'Yes, I Want!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.put(`/users/${userdetails._id}`, { role: "admin" })
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire(
+                                'Added!',
+                                `Now ${userdetails.name} is A Admin`,
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
     }
-    console.log(users);
+    const handelMakeInstructor = (userdetails) => {
+        // console.log(userdetails._id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `Do You Want to Make ${userdetails.name} is an Instructor?`,
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#00FF00',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, I Want!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.put(`/users/${userdetails._id}`, { role: "instructor" })
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire(
+                                'Added!',
+                                `Now ${userdetails.name} is A Instructor`,
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
+    }
+    // console.log(users);
     return (
         <div>
             <div className="divider"><h1 className="text-4xl font-extrabold">ALL USER</h1></div>
@@ -30,11 +78,10 @@ const ManageUser = () => {
             <div>
                 <div className="overflow-x-auto">
                     <table className="table">
-                        {/* head */}
                         <thead>
                             <tr>
                                 <th>
-                                   #
+                                    #
                                 </th>
                                 <th>Name and Email</th>
                                 <th>Role</th>
@@ -44,38 +91,38 @@ const ManageUser = () => {
                         </thead>
                         <tbody>
                             {
-                                users && users.map((user,index) => <tr key={user._id}>
+                                users && users.map((userdetails, index) => <tr key={userdetails._id}>
                                     <th>
-                                        {index+1}
+                                        {index + 1}
                                     </th>
                                     <td>
                                         <div className="flex items-center space-x-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={user?.photo} alt="Avatar Tailwind CSS Component" />
+                                                    <img src={userdetails?.photo} alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="font-bold">{user?.name}</div>
-                                                <div className="text-sm ">{user?.email}</div>
+                                                <div className="font-bold">{userdetails?.name}</div>
+                                                <div className="text-sm ">{userdetails?.email}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                      {user.role}
+                                        {userdetails.role}
                                     </td>
                                     <td>
-                                        <button disabled={user.role==="admin"} className="btn btn-xs btn-success ">Make Admin</button>
-                                        <button disabled={user.role === "instructor"} className=" ml-3 btn btn-xs btn-outline btn-success">Make Instructor</button>
+                                        <button onClick={() => handelMakeAdmin(userdetails)} disabled={userdetails.role === "admin" || userdetails.email === user.email} className="btn btn-xs btn-success ">Make Admin</button>
+                                        <button onClick={() => handelMakeInstructor(userdetails)} disabled={userdetails.role === "instructor" || userdetails.email === user.email} className=" ml-3 btn btn-xs btn-outline btn-success">Make Instructor</button>
                                     </td>
                                     <th>
-                                        <button  className="btn btn-ghost btn-xs">details</button>
+                                        <button className="btn btn-ghost btn-xs">details</button>
                                     </th>
                                 </tr>)
                             }
-                           
+
                         </tbody>
-                      
+
 
                     </table>
                 </div>

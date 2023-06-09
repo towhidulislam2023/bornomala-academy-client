@@ -7,12 +7,12 @@ const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
 const AddClass = () => {
     const { register, handleSubmit, reset } = useForm();
     const { user } = useContext(AuthProviderContext);
-    console.log(user, " user from add");
+    // console.log(user, " user from add");
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
     console.log(img_hosting_token);
     const [axiosSecure] = useAxiosSecure()
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
 
         const formData = new FormData();
         formData.append('image', data.image[0])
@@ -23,14 +23,14 @@ const AddClass = () => {
         })
             .then(res => res.json())
             .then(imgResponse => {
-                console.log(imgResponse);
+                // console.log(imgResponse);
                 if (imgResponse.data.display_url) {
                     const AddedClasses = {
-                        status: "pending", image: imgResponse.data.display_url, name: data.courseName, instructor: data.teachername, email: data.teacheremail, availableSeats: data.availableSeats || 40, totalSeats: data.totalSeats
+                        status: "pending", image: imgResponse.data.display_url, name: data.courseName, instructor: data.teachername, email: data.teacheremail, availableSeats: parseInt(data.availableSeats) || 40, totalSeats: parseInt(data.totalSeats) , price: parseInt(data.price)
                     }
                     axiosSecure.post("/classes",AddedClasses)
                     .then(res=>{
-                        console.log(res.data)
+                        // console.log(res.data)
                         if (res.data.insertedId) {
                             Swal.fire({
                                 position: 'top-end',
@@ -44,7 +44,7 @@ const AddClass = () => {
                         }
                     })
 
-                    console.log(AddedClasses);
+                    // console.log(AddedClasses);
                 }
 
             })

@@ -13,7 +13,7 @@ const ClassCard = ({ popularclass }) => {
     const [instructors] = UseBestInstructors()
     const [Payclasses]=UsePaymentProduct()
     const navigate=useNavigate()
-    console.log(Payclasses);
+    // console.log(Payclasses);
     const [carts ,refetch]=UseCart()
     const {user}=useContext(AuthProviderContext)
     const [axiosSecure]=useAxiosSecure()
@@ -41,13 +41,13 @@ const ClassCard = ({ popularclass }) => {
             })     
             return       
         }
-        console.log(classDetails);
+        // console.log(classDetails);
         if (user) {
             const selectedClass = { studentName: user.displayName, studentEmail: user.email, courseName: classDetails.name, courseInstructorName: classDetails.instructor, CourseBannar: classDetails.image, price: classDetails.price, instructorEmail: classDetails.email, courseId:classDetails._id}
-            console.log(selectedClass);
+            // console.log(selectedClass);
             axiosSecure.post("carts", selectedClass)
             .then(res=>{
-                console.log(res.data)
+                // console.log(res.data)
                 if (res.data.insertedId) {
                     refetch()
                     Swal.fire({

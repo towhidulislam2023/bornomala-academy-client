@@ -4,7 +4,7 @@ import DispalyInstructors from '../../Sheared/DispalyInstructors/DispalyInstruct
 
 const Instructor = () => {
     const [allInstructors] = UseInstructors()
-    console.log("instructors", allInstructors);
+    // console.log("instructors", allInstructors);
     return (
         <div>
             <div className='h-[15vh] bg-green-200 py-10'>

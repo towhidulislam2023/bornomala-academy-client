@@ -12,7 +12,7 @@ const UseAuthorizarion = () => {
         queryFn: async () => {
            if (user) {
                const res = await axiosSecure(`/users/${user.email}`)
-               console.log('res from axios', res)
+            //    console.log('res from axios', res)
                return res.data.role;
            }
         },
