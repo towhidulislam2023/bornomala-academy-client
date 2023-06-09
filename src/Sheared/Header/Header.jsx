@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
 import UseAuthorizarion from '../../hook/UseAuthorization/UseAuthorizarion';
+import ThemeToggle from '../../ThemeToggle/ThemeToggle';
 
 
 
@@ -92,12 +93,14 @@ const Header = () => {
                 <Link to={"/"}>
                     <img className='w-64' src={logo} alt="" />
                 </Link>
+                
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navLinks}
                 </ul>
             </div>
+            <ThemeToggle></ThemeToggle>
         </div>
     );
 };

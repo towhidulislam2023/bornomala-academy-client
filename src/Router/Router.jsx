@@ -60,15 +60,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard/selectedClasses",
-                element: <SelectedClasses></SelectedClasses>,
+                element: <PrivateRoute> <SelectedClasses></SelectedClasses></PrivateRoute>,
             },
             {
                 path: "/dashboard/enrolledClasses",
-                element: <EnrolledClasses></EnrolledClasses>,
+                element: <PrivateRoute><EnrolledClasses></EnrolledClasses></PrivateRoute>,
             },
             {
                 path: "/dashboard/paymenthistory",
-                element: <PaymentHistory></PaymentHistory>,
+                element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>,
             },
             {
                 path: "/dashboard/manageUsers",
