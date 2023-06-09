@@ -35,13 +35,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "/instructors",
-                element:<Instructor></Instructor>
+                element: <Instructor></Instructor>
             },
             {
                 path: "/classes/:id",
-                element:<InstractorDetails></InstractorDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/instructors/${params.id}`)
-                
+                element: <InstractorDetails></InstractorDetails>,
+                loader: ({ params }) => fetch(`https://bornomala-academy-server.vercel.app/instructors/${params.id}`)
+
             },
             {
                 path: "/login",
@@ -55,47 +55,47 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:"/dashboard",
+        path: "/dashboard",
         element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
-        children:[
-        {
-            path: "/dashboard/selectedClasses",
-            element: <SelectedClasses></SelectedClasses>,
-        },
-        {
-            path: "/dashboard/enrolledClasses",
-            element: <EnrolledClasses></EnrolledClasses>,
-        },
-        {
-            path: "/dashboard/paymenthistory",
-            element: <PaymentHistory></PaymentHistory>,
-        },
-        {
-            path: "/dashboard/manageUsers",
-            element: <AdminRoute><ManageUser></ManageUser></AdminRoute> ,
-        },
-        {
-            path: "/dashboard/manageallclasses",
-            element: <AdminRoute><ManageAllClasses></ManageAllClasses></AdminRoute> ,
-        },
-        {
-            path: "/dashboard/manageClasses",
-            element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>,
-        },
-        {
-            path: "/dashboard/addAClass",
-            element: <InstructorsRoute><AddClass></AddClass></InstructorsRoute>,
-        },
-        {
-            path: "/dashboard/myClasses",
-            element: <InstructorsRoute><MyClasses></MyClasses></InstructorsRoute>,
-        },
-        {
-            path: "/dashboard/payment",
-            element: <Payment></Payment>,
-        },
-    
-    ]
+        children: [
+            {
+                path: "/dashboard/selectedClasses",
+                element: <SelectedClasses></SelectedClasses>,
+            },
+            {
+                path: "/dashboard/enrolledClasses",
+                element: <EnrolledClasses></EnrolledClasses>,
+            },
+            {
+                path: "/dashboard/paymenthistory",
+                element: <PaymentHistory></PaymentHistory>,
+            },
+            {
+                path: "/dashboard/manageUsers",
+                element: <AdminRoute><ManageUser></ManageUser></AdminRoute>,
+            },
+            {
+                path: "/dashboard/manageallclasses",
+                element: <AdminRoute><ManageAllClasses></ManageAllClasses></AdminRoute>,
+            },
+            {
+                path: "/dashboard/manageClasses",
+                element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>,
+            },
+            {
+                path: "/dashboard/addAClass",
+                element: <InstructorsRoute><AddClass></AddClass></InstructorsRoute>,
+            },
+            {
+                path: "/dashboard/myClasses",
+                element: <InstructorsRoute><MyClasses></MyClasses></InstructorsRoute>,
+            },
+            {
+                path: "/dashboard/payment",
+                element: <Payment></Payment>,
+            },
+
+        ]
     }
 ]);
 export default router

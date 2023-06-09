@@ -6,10 +6,10 @@ import { AuthProviderContext } from "../../Provider/AuthProvider/AuthProvider";
 
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://bornomala-academy-server.vercel.app',
 });
 const useAxiosSecure = () => {
-    const { logout }=useContext(AuthProviderContext)
+    const { logout } = useContext(AuthProviderContext)
     const navigate = useNavigate();
 
     useEffect(() => {
