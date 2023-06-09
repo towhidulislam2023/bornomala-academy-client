@@ -9,9 +9,7 @@ import UseAuthorizarion from '../../hook/UseAuthorization/UseAuthorizarion';
 
 const Header = () => {
     const [userRole]=UseAuthorizarion()
-    console.log("userRole", userRole);
     const { user, logout } = useContext(AuthProviderContext);
-    console.log(user);
 
     const handleLogout = () => {
         logout();

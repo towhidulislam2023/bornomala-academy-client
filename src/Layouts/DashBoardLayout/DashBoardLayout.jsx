@@ -11,7 +11,6 @@ import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
 const DashBoardLayout = () => {
     const {user}=useContext(AuthProviderContext)
     const [userRole] = UseAuthorizarion()
-    console.log("userRole", userRole);
     const userNavLinks = <>
         <li>
             <NavLink
