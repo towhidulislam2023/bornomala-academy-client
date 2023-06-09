@@ -98,7 +98,14 @@ const CheckoutForm = ({ cart, price }) => {
                                 showConfirmButton: false,
                                 timer: 1500
                             });
-                            navigate("/");
+                            if (user) {
+                                axiosSecure.put(`/payments?email=${user.email}`)
+                                .then(res=>console.log(res.data))
+                            }
+                            
+
+
+                            navigate("/dashboard/enrolledClasses");
                         }
                     });
             }

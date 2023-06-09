@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaChalkboardTeacher, FaDollarSign, FaUsers } from 'react-icons/fa';
 import UseAuthorizarion from '../../hook/UseAuthorization/UseAuthorizarion';
 import { AuthProviderContext } from '../../Provider/AuthProvider/AuthProvider';
@@ -6,14 +6,23 @@ import useAxiosSecure from '../../hook/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2';
 import UsePaymentProduct from '../../hook/UsePaymentProduct/UsePaymentProduct';
 import UseCart from '../../hook/UseCart/UseCart';
+import { useNavigate } from 'react-router-dom';
+import UseBestInstructors from '../../hook/UseBestInstructors/UseBestInstructors';
 
 const ClassCard = ({ popularclass }) => {
+    const [instructors] = UseBestInstructors()
     const [Payclasses]=UsePaymentProduct()
+    const navigate=useNavigate()
     console.log(Payclasses);
     const [carts ,refetch]=UseCart()
     const {user}=useContext(AuthProviderContext)
     const [axiosSecure]=useAxiosSecure()
     const handelSelect=(classDetails)=>{
+        if (!user) {
+            navigate("/login")
+            return
+            
+        }
         const alreadypayedcourse= Payclasses && Payclasses.find(pay=>pay._id===classDetails._id)
         if (alreadypayedcourse) {
             Swal.fire({
@@ -57,7 +66,8 @@ const ClassCard = ({ popularclass }) => {
 
     }
     const [userRole] = UseAuthorizarion()
-    const totalStudent = popularclass.totalSeats - popularclass.availableSeats
+    const totalStudent = popularclass.totalSeats - popularclass.availableSeats 
+   
     return (
         <div className={`card  ${popularclass.availableSeats === 0 ? "bg-red-300" : "bg-base-100"}  shadow-xl`}>
             <figure className="px-10 pt-10">

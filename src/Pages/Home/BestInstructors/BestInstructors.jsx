@@ -3,7 +3,7 @@ import UseBestInstructors from '../../../hook/UseBestInstructors/UseBestInstruct
 import DispalyInstructors from '../../../Sheared/DispalyInstructors/DispalyInstructors';
 
 const BestInstructors = () => {
-    const [instructors]=UseBestInstructors()
+    const [instructors, refetch]=UseBestInstructors()
     console.log(instructors , " logged from bestInstractor");
     return (
         <div className='mt-10'>

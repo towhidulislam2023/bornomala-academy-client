@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import useAxiosSecure from '../../hook/useAxiosSecure/useAxiosSecure';
 import ClassCard from '../../Sheared/ClassCard/ClassCard';
+import UseCart from '../../hook/UseCart/UseCart';
 
 const InstractorDetails = () => {
+    const [carts, refetch]=UseCart()
     const data = useLoaderData();
     console.log(data, "from single");
     const [axiosSecure] = useAxiosSecure();
@@ -20,10 +22,10 @@ const InstractorDetails = () => {
                 console.log('Error fetching data:', error);
             }
         };
-
+        
+        refetch()
         fetchData();
     }, [data, axiosSecure]);
-
     console.log(classes,"classwsasfvsdvds");
     return (
         <div className='my-10'>

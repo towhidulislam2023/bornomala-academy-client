@@ -88,12 +88,13 @@ const Signup = () => {
 
                             <input className='border-l-none border-b-2 mt-10 bg-gray-100 rounded-md px-5 border-black border-opacity-5 py-3 outline-none w-full text-black' type="text" {...register("photoUrl", { required: "photoUrl" })} required name='photoUrl' placeholder='Your Photo Url' />
                             {errors.photourl && <p className='text-error' role="alert">{errors.photoUrl?.photoUrl}</p>}
-
-
+                        
                             <button className='btn w-[100%] mx-auto btn-success mt-10'>Signup
                             </button>
+                            <p className='text-center mt-3'>Already Have an Account <Link className='text-success underline ' to={"/login"}>Please Login</Link></p>
                          
                         </form>
+
                         <SocialLogin></SocialLogin>
                     </div>
 
