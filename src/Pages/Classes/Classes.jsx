@@ -5,6 +5,13 @@ import ClassCard from '../../Sheared/ClassCard/ClassCard';
 const Classes = () => {
     const [classes] = UseClasses()
     // console.log(classes);
+    if (classes.length === 0) {
+        return <div className='text-center'><span className="loading loading-bars loading-xs"></span>
+            <span className="loading loading-bars loading-sm"></span>
+            <span className="loading loading-bars loading-md"></span>
+            <span className="loading loading-bars loading-lg"></span></div>
+
+    }
     return (
         <div className=' mb-10'>
             <div className='h-[15vh] bg-green-200 py-10 my-10'>

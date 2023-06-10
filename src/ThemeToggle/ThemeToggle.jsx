@@ -13,10 +13,10 @@ const ThemeToggle = () => {
 
         if (!isDarkMode) {
             document.documentElement.setAttribute('data-theme', 'dark');
-            DarkReader.enable();
+            // DarkReader.enable();
         } else {
             document.documentElement.setAttribute('data-theme', 'light');
-            DarkReader.disable();
+            // DarkReader.disable();
         }
     };
 

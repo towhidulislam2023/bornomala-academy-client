@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const DispalyInstructors = ({ instructor }) => {
     return (
-        <div className='md:flex items-center gap-10 border md:p-10 rounded-lg my-3 px-3'>
+        <div className='md:flex items-center gap-10 border md:p-10 rounded-lg my-3 px-3 h-52'>
             <div className='md:w-[40%]'>
-                <img className='rounded-lg ' src={instructor.image} alt="" />
+                <img className='rounded-lg h-40' src={instructor.image} alt="" />
             </div>
             <div>
                 <p className='text-xl'> Name: {instructor.name}</p>
