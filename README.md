@@ -26,7 +26,7 @@ Bornomala Academy is an online language learning community that aims to help ind
 
 ## Live Site
 
-Visit the [Bornomala Academy](https://bornomala-academy.web.app/) website to join our language learning community and start your language learning journey.
+Visit the [Bornomala Academy](https://bornomala-academy.web.app/) website to join our language learning community and start your language learning journey. https://bornomala-academy.web.app/
 
 ## License
 
