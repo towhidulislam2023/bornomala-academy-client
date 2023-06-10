@@ -59,7 +59,6 @@ const ManageUser = () => {
                 axiosSecure.put(`/users/${userdetails._id}`, { role: "instructor" })
                     .then(res => {
                         if (res.data.modifiedCount > 0) {
-
                             const instructor = { image: userdetails.photo, name: userdetails.name, email: userdetails.email, numOfClasses: 0, totalStudents:0}
 
                             console.log(instructor);
@@ -100,7 +99,6 @@ const ManageUser = () => {
                                 <th>Name and Email</th>
                                 <th>Role</th>
                                 <th>Action</th>
-                                <th>Delete User</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -129,9 +127,7 @@ const ManageUser = () => {
                                         <button onClick={() => handelMakeAdmin(userdetails)} disabled={userdetails.role === "admin" || userdetails.email === user.email} className="btn btn-xs btn-success ">Make Admin</button>
                                         <button onClick={() => handelMakeInstructor(userdetails)} disabled={userdetails.role === "instructor" || userdetails.email === user.email} className=" ml-3 btn btn-xs btn-outline btn-success">Make Instructor</button>
                                     </td>
-                                    <th>
-                                        <button className="btn btn-ghost btn-xs">details</button>
-                                    </th>
+                                   
                                 </tr>)
                             }
 
