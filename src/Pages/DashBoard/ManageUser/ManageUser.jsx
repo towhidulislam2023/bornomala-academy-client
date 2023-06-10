@@ -89,7 +89,7 @@ const ManageUser = () => {
             <div className="divider"><h1 className="text-4xl font-extrabold">ALL USER</h1></div>
 
             <div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto w-[90vw] md:w-full  h-[80vh] mt-10">
                     <table className="table">
                         <thead>
                             <tr>
@@ -123,7 +123,7 @@ const ManageUser = () => {
                                     <td>
                                         {userdetails.role}
                                     </td>
-                                    <td>
+                                    <td className='flex '>
                                         <button onClick={() => handelMakeAdmin(userdetails)} disabled={userdetails.role === "admin" || userdetails.email === user.email} className="btn btn-xs btn-success ">Make Admin</button>
                                         <button onClick={() => handelMakeInstructor(userdetails)} disabled={userdetails.role === "instructor" || userdetails.email === user.email} className=" ml-3 btn btn-xs btn-outline btn-success">Make Instructor</button>
                                     </td>

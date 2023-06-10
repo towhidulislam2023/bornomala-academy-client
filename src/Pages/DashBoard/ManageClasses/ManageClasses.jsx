@@ -93,7 +93,7 @@ const ManageClasses = () => {
        <div className="divider my-10"><h1 className="text-4xl">Manage Classes</h1></div>
 
             {
-                pendingClasses && pendingClasses.map(classes => <div key={classes._id} className='my-6 md:flex items-center gap-20 border md:px-12 py-5'>
+                pendingClasses && pendingClasses.map(classes => <div key={classes._id} className='my-6 md:flex items-center gap-20 border md:px-12 px-4 py-5'>
                     <div>
                         <img className='h-24' src={classes.image} alt="" />
                     </div>
