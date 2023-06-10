@@ -124,7 +124,6 @@ const DashBoardLayout = () => {
                                         "user"
                         }
                     </ul>
-
                 </div>
                 <div className='md:col-span-9'>
                     <Outlet></Outlet>
