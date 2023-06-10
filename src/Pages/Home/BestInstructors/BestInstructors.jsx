@@ -6,8 +6,6 @@ import DispalyInstructors from '../../../Sheared/DispalyInstructors/DispalyInstr
 
 const BestInstructors = () => {
     const [instructors, refetch] = UseBestInstructors();
-    // console.log(instructors , " logged from bestInstractor");
-
     const [isVisible, setIsVisible] = useState(false);
     const [isScrolling, setIsScrolling] = useState(false);
 
@@ -38,15 +36,21 @@ const BestInstructors = () => {
 
     const [ref, inView] = useInView({
         triggerOnce: true,
-        threshold: 0.1,
+        threshold: 0, // Adjust the threshold to 0
     });
-    if (instructors.length===0) {
-        return <div className='text-center'><span className="loading loading-bars loading-xs"></span>
-            <span className="loading loading-bars loading-sm"></span>
-            <span className="loading loading-bars loading-md"></span>
-            <span className="loading loading-bars loading-lg"></span></div>
-        
+
+    if (instructors.length === 0) {
+        return (
+            <div className="text-center">
+                <span className="loading loading-bars loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+                <span className="loading loading-bars loading-md"></span>
+                <span className="loading loading-bars loading-lg"></span>
+            </div>
+        );
     }
+
+    const isMobile = window.innerWidth <= 768; 
 
     return (
         <div className="mt-10">
@@ -59,9 +63,13 @@ const BestInstructors = () => {
                         <motion.div
                             key={instructor._id}
                             ref={isScrolling ? null : ref}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: inView || isScrolling ? 1 : 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.2 }}
+                            initial={isMobile ? {} : { opacity: 0, y: 20 }}
+                            animate={isMobile ? {} : { opacity: inView || isScrolling ? 1 : 0, y: 0 }}
+                            transition={{
+                                duration: 0.5,
+                                delay: isMobile ? 0 : index * 0.2,
+                                ease: 'easeInOut',
+                            }}
                         >
                             <DispalyInstructors instructor={instructor} />
                         </motion.div>

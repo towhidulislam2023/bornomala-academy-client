@@ -122,7 +122,6 @@ const ManageClasses = () => {
                                 <h3 className="font-bold text-lg">Write Feedback!</h3>
                                 <textarea onBlur={handlefeedbackChange} className={` textarea w-full h-9 textarea-bordered`} placeholder="Write Feedback if you denied this class"></textarea>
                                 <div className="modal-action">
-                                    {/* if there is a button in form, it will close the modal */}
                                     <button className="btn">Close</button>
                                     <button disabled={!feedback} onClick={() => handelFeedback(classes)} className='btn btn-success '>Send Feedback</button>
                                 </div>
