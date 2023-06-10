@@ -19,23 +19,30 @@ import AdminRoute from "./AdminRoute/AdminRoute";
 import InstructorsRoute from "./InstructorsRoute/InstructorsRoute";
 import ManageAllClasses from "../Pages/DashBoard/ManageAllClasses/ManageAllClasses";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
+import Deniedclasses from "../Pages/DashBoard/Deniedclasses/Deniedclasses";
+import UpdateClasses from "../Pages/DashBoard/AddClass/UpdateClasses";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
                 element: <Home></Home>,
+                errorElement: <ErrorPage></ErrorPage>,
             },
             {
                 path: "/classes",
-                element: <Classes></Classes>
+                element: <Classes></Classes>,
+                errorElement: <ErrorPage></ErrorPage>,
             },
             {
                 path: "/instructors",
-                element: <Instructor></Instructor>
+                element: <Instructor></Instructor>,
+                errorElement: <ErrorPage></ErrorPage>,
             },
             {
                 path: "/classes/:id",
@@ -83,19 +90,32 @@ const router = createBrowserRouter([
                 element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>,
             },
             {
+                path: "/dashboard/deniedclasses",
+                element: <AdminRoute><Deniedclasses></Deniedclasses></AdminRoute>,
+            },
+            {
                 path: "/dashboard/addAClass",
                 element: <InstructorsRoute><AddClass></AddClass></InstructorsRoute>,
+            },
+            {
+                path: "/dashboard/updateClasses/:id",
+                element: <InstructorsRoute><UpdateClasses></UpdateClasses></InstructorsRoute>,
+                
             },
             {
                 path: "/dashboard/myClasses",
                 element: <InstructorsRoute><MyClasses></MyClasses></InstructorsRoute>,
             },
             {
-                path: "/dashboard/payment",
-                element: <Payment></Payment>,
+                path: "/dashboard/payment/:id",
+                element: <PrivateRoute><Payment></Payment></PrivateRoute> ,
             },
 
         ]
+    },
+    {
+        path:"/*",
+        element:<ErrorPage></ErrorPage>
     }
 ]);
 export default router

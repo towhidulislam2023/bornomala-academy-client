@@ -42,18 +42,38 @@ const ManageClasses = () => {
         })
 
     }
-    const handelDenied=(classes)=>{
+    const handelDenied =(classes)=>{
+        // console.log(classes);
+        axiosSecure.put(`/classes/${classes._id}`,{ status:"denied"})
+        .then(res=>{
+            if (res.data.modifiedCount>0) {
+                refetch()
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'This Class Approved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                
+            }
+            // console.log(res.data)
+        })
+
+    }
+    const handelFeedback =(classes)=>{
 
         if (feedback) {
-            const updatedInfo = { feedback: feedback, status:"denied"}
+            const updatedInfo = { feedback: feedback}
             axiosSecure.patch(`/classes/${classes._id}`, updatedInfo)
                 .then(res => {
                     if (res.data.modifiedCount > 0) {
                         refetch()
                         Swal.fire({
                             position: 'top-end',
-                            icon: 'error',
-                            title: 'This Class Denied',
+                            icon: 'success',
+                            title: 'You Added Feedback',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -85,7 +105,6 @@ const ManageClasses = () => {
                         </div>
                         <p className='text-xl my-2'> course Teacher:<span className='font-semibold'> {classes.instructor} </span> </p>
                         <p className='text-xl my-2'> course Student:<span className='font-semibold'> {classes.totalSeats - classes.availableSeats} </span> </p>
-                        <textarea onBlur={handlefeedbackChange} className={` textarea w-full h-9 textarea-bordered` }placeholder="Write Feedback if you denied this class"></textarea>
 
 
 
@@ -94,7 +113,22 @@ const ManageClasses = () => {
                     <div className='space-y-7'>
                         <button onClick={() => handelApprove(classes)} className='btn btn-success '>Approved</button>
                         <br />
-                        <button disabled={!feedback} onClick={()=>handelDenied(classes)} className='btn btn-success '>Denied</button>
+                        <button  onClick={()=>handelDenied(classes)} className='btn btn-success '>Denied</button>
+                        <br />
+
+                        <button className="btn btn-success" onClick={() => window.my_modal_1.showModal()}>Feedback</button>
+                        <dialog id="my_modal_1" className="modal">
+                            <form method="dialog" className="modal-box">
+                                <h3 className="font-bold text-lg">Write Feedback!</h3>
+                                <textarea onBlur={handlefeedbackChange} className={` textarea w-full h-9 textarea-bordered`} placeholder="Write Feedback if you denied this class"></textarea>
+                                <div className="modal-action">
+                                    {/* if there is a button in form, it will close the modal */}
+                                    <button className="btn">Close</button>
+                                    <button disabled={!feedback} onClick={() => handelFeedback(classes)} className='btn btn-success '>Send Feedback</button>
+                                </div>
+                            </form>
+                        </dialog>
+                        
                     </div>
 
 

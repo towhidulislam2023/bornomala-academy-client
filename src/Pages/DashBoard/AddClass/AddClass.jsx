@@ -53,7 +53,7 @@ const AddClass = () => {
     return (
         <>
             <div className='divider'>
-                <h1 className='text-3xl font-semibold'>This is Add A class</h1>
+                <h1 className='text-3xl font-semibold'>Add A class</h1>
             </div>
             <div className='bg-green-100 my-12 p-6'>
                 <form onSubmit={handleSubmit(onSubmit)} >

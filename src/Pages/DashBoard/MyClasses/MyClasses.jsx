@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import useAxiosSecure from '../../../hook/useAxiosSecure/useAxiosSecure';
 import { useQuery } from 'react-query';
 import { AuthProviderContext } from '../../../Provider/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const MyClasses = () => {
     const { user, loading } = useContext(AuthProviderContext)
@@ -20,7 +21,8 @@ const MyClasses = () => {
     // console.log(myclasses);
     return (
         <div>
-        <h1>This is My Class page</h1>
+        <h1 className='text-4xl font-bold'>My Classes</h1>
+        <div className="divider"></div>
            {
                 myclasses && myclasses.map(classes => <div key={classes._id} className='my-6 md:flex items-center gap-20 border md:px-12 py-5'>
                     <div>
@@ -40,7 +42,7 @@ const MyClasses = () => {
 
                     </div>
 
-                    <button className='btn btn-success '>See activity</button>
+                    <Link to={`/dashboard/updateClasses/${classes._id}`}><button className='btn btn-success '>Update</button></Link>
 
 
                 </div>)

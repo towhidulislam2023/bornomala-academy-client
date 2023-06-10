@@ -59,12 +59,26 @@ const ManageUser = () => {
                 axiosSecure.put(`/users/${userdetails._id}`, { role: "instructor" })
                     .then(res => {
                         if (res.data.modifiedCount > 0) {
-                            refetch()
-                            Swal.fire(
-                                'Added!',
-                                `Now ${userdetails.name} is A Instructor`,
-                                'success'
-                            )
+
+                            const instructor = { image: userdetails.photo, name: userdetails.name, email: userdetails.email, numOfClasses: 0, totalStudents:0}
+
+                            console.log(instructor);
+
+                            axiosSecure.post("/instructors",instructor)
+                            .then(res=>{
+                                if (res.data.insertedId) {
+                                    refetch()
+                                    Swal.fire(
+                                        'Added!',
+                                        `Now ${userdetails.name} is A Instructor`,
+                                        'success'
+                                    )
+                                    
+                                }
+                                console.log(res.data)
+                            })
+
+                           
                         }
                     })
             }

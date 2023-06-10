@@ -23,7 +23,7 @@ const InstractorDetails = () => {
             }
         };
         
-        refetch()
+        // refetch()
         fetchData();
     }, [data, axiosSecure]);
     // console.log(classes,"classwsasfvsdvds");

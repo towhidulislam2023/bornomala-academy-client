@@ -10,7 +10,7 @@ const DispalyInstructors = ({ instructor }) => {
             <div>
                 <p className='text-xl'> Name: {instructor.name}</p>
                 <p className='text-lg'> Email: {instructor.email}</p>
-                <p className='text-2xl'>Total Student: {instructor.totalStudents}</p>
+                <p></p>
                 <Link to={`/classes/${instructor._id}`}><button className='btn btn-block btn-success mt-10'>See All Classes</button></Link>
             </div>
         </div>

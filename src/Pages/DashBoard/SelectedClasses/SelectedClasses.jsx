@@ -10,7 +10,7 @@ const SelectedClasses = () => {
     const [carts, refetch]=UseCart()
     const [axiosSecure]=useAxiosSecure()
     const total = carts.reduce((sum, item) => item.price + sum, 0);
-    // console.log(carts , "from Selecterd class");
+    console.log(carts , "from Selecterd class");
     const handleDelete=(item)=>{
 
         Swal.fire({
@@ -83,6 +83,12 @@ const SelectedClasses = () => {
                                 <td>
                                     <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
+                                <td>
+                                  <Link to={`/dashboard/payment/${item.courseId}`}>
+                                  <button className="btn btn-success btn-sm">PAY</button>
+
+                                  </Link>
+                                </td>
                             </tr>)
                         }
 
@@ -91,9 +97,8 @@ const SelectedClasses = () => {
                 </table>
             </div>
             <div className='flex items-end justify-end'>
-                <Link to="/dashboard/payment">
-                    <button className="btn btn-success btn-sm">PAY All</button>
-                </Link>
+                    {/* <button className="btn btn-success btn-sm">PAY All</button> */}
+                
             </div>
         </div>
     );

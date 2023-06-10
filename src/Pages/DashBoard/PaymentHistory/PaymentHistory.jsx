@@ -44,8 +44,8 @@ const PaymentHistory = () => {
                                 paymentsHistory.map((item, index) => (
                                     <tr key={item.transactionId}>
                                         <td>{index + 1}</td>
-                                        <td>{item.courseName.join(', ')}</td>
-                                        <td>{item.courseInstractorsEmail.join(', ')}</td>
+                                        <td>{item.courseName}</td>
+                                        <td>{item.courseInstractorsEmail}</td>
                                         <td className="text-end">${item.price}</td>
                                         <td>{item.transactionId}</td>
                                     </tr>

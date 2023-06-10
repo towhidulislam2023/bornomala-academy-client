@@ -5,9 +5,11 @@ import { AuthProviderContext } from "../../../Provider/AuthProvider/AuthProvider
 import useAxiosSecure from "../../../hook/useAxiosSecure/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import UseCart from "../../../hook/UseCart/UseCart";
+// import UseCart from "../../../hook/UseCart/UseCart";
 
 
-const CheckoutForm = ({ cart, price }) => {
+const CheckoutForm = ({classes, price }) => {
     const navigate=useNavigate()
     const stripe = useStripe();
     const elements = useElements();
@@ -17,7 +19,11 @@ const CheckoutForm = ({ cart, price }) => {
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
-
+console.log(classes);
+    const [carts, refetch] = UseCart()
+    console.log(carts);
+    const paymentedClass = carts.find(cart => cart.courseId == classes._id)
+    console.log(paymentedClass, "paymenteed class");
     useEffect(() => {
         if (price > 0) {
             axiosSecure.post('/create-payment-intent', { price })
@@ -78,11 +84,10 @@ const CheckoutForm = ({ cart, price }) => {
                     transactionId: paymentIntent.id,
                     price,
                     date: new Date(),
-                    quantity: cart.length,
-                    cartItemId:cart.map(item=>item._id),
-                    courseId: cart.map(item => item.courseId),
-                    courseInstractorsEmail: cart.map(items => items.instructorEmail),
-                    courseName: cart.map(item => item.courseName)
+                    classesItemId:classes._id,
+                    courseInstractorsEmail: classes.email,
+                    courseInstractorsName: classes.instructor,
+                    courseName: classes.name
                 };
 
                 axiosSecure.post('/payments', payment)
@@ -90,17 +95,29 @@ const CheckoutForm = ({ cart, price }) => {
                         // console.log(res.data);
                         if (res.data.insertResult.insertedId) {
                             // Display confirmation
-                            
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Payment Confirmed Successfully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
                             if (user) {
-                                axiosSecure.put(`/payments?email=${user.email}`)
-                                .then(res=>console.log(res.data))
+                                axiosSecure.put(`/payments?id=${classes._id}`)
+                                .then(res=>{
+                                    if (res.data) {
+                                        axiosSecure.delete(`/carts/${paymentedClass._id}`)
+                                        .then(res=>{
+                                            console.log();
+                                            if (res.data.deletedCount > 0) {
+                                                Swal.fire({
+                                                    position: 'top-end',
+                                                    icon: 'success',
+                                                    title: 'Payment Confirmed Successfully',
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                });
+                                                refetch()
+                                                
+                                            }
+                                        })
+                                        
+                                    }
+                                
+                                })
                             }
                             
 
