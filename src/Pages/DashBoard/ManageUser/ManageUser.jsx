@@ -65,6 +65,8 @@ const ManageUser = () => {
 
                             axiosSecure.post("/instructors",instructor)
                             .then(res=>{
+                                console.log(res.data);
+                                refetch()
                                 if (res.data.insertedId) {
                                     refetch()
                                     Swal.fire(
