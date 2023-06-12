@@ -22,6 +22,7 @@ import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 import Deniedclasses from "../Pages/DashBoard/Deniedclasses/Deniedclasses";
 import UpdateClasses from "../Pages/DashBoard/AddClass/UpdateClasses";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import UserRoute from "./UserRoute/UserRoute";
 
 const router = createBrowserRouter([
     {
@@ -67,15 +68,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard/selectedClasses",
-                element: <PrivateRoute> <SelectedClasses></SelectedClasses></PrivateRoute>,
+                element: <PrivateRoute> <UserRoute><SelectedClasses></SelectedClasses></UserRoute> </PrivateRoute>,
             },
             {
                 path: "/dashboard/enrolledClasses",
-                element: <PrivateRoute><EnrolledClasses></EnrolledClasses></PrivateRoute>,
+                element: <PrivateRoute><UserRoute><EnrolledClasses></EnrolledClasses></UserRoute></PrivateRoute>,
             },
             {
                 path: "/dashboard/paymenthistory",
-                element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>,
+                element: <PrivateRoute><UserRoute><PaymentHistory></PaymentHistory></UserRoute></PrivateRoute>,
             },
             {
                 path: "/dashboard/manageUsers",

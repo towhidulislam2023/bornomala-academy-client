@@ -51,14 +51,16 @@ const Header = () => {
             {user && user ? (
                 <>
                     <li>
-                        <NavLink
-                            to={`${userRole === "user" ? "/dashboard/selectedClasses" : userRole === "admin" ? "/dashboard/manageUsers" : userRole === "instructor" ?"/dashboard/addAClass":null}`}
-                            className={({ isActive }) =>
-                                isActive ? "underline text-xl mr-3" : " text-xl mr-3"
-                            }
-                        >
-                            Dashboard
-                        </NavLink>
+                       {
+                            userRole && <NavLink
+                                to={`${userRole === "user" ? "/dashboard/selectedClasses" : userRole === "admin" ? "/dashboard/manageUsers" : userRole === "instructor" ? "/dashboard/addAClass" : '/'}`}
+                                className={({ isActive }) =>
+                                    isActive ? "underline text-xl mr-3" : " text-xl mr-3"
+                                }
+                            >
+                                Dashboard
+                            </NavLink>
+                       }
                     </li>
                     <div className="avatar mr-4">
                         <div className="w-8 rounded mx-auto my-10 md:my-0">

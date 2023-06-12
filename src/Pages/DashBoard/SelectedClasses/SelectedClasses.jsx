@@ -1,11 +1,18 @@
 import React from 'react';
 import UseCart from '../../../hook/UseCart/UseCart';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaTrashAlt } from 'react-icons/fa';
 import useAxiosSecure from '../../../hook/useAxiosSecure/useAxiosSecure';
 import Swal from 'sweetalert2';
+import UseAuthorizarion from '../../../hook/UseAuthorization/UseAuthorizarion';
 
 const SelectedClasses = () => {
+    const navigate=useNavigate()
+    const [userRole]=UseAuthorizarion()
+    if (!userRole=="user") {
+        navigate("/")
+        return
+    }
 
     const [carts, refetch]=UseCart()
     const [axiosSecure]=useAxiosSecure()
