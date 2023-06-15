@@ -9,26 +9,21 @@ const BestInstructors = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isScrolling, setIsScrolling] = useState(false);
 
-    const handleScroll = () => {
-        setIsVisible(true);
-        setIsScrolling(true);
-    };
-
     useEffect(() => {
-        let timeoutId;
+        const handleScroll = () => {
+            setIsVisible(true);
+            setIsScrolling(true);
+        };
 
         const handleScrollEnd = () => {
             setIsScrolling(false);
-            timeoutId = setTimeout(() => {
-                setIsVisible(false);
-            }, 500);
+            setIsVisible(false);
         };
 
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('scroll', handleScrollEnd);
 
         return () => {
-            clearTimeout(timeoutId);
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('scroll', handleScrollEnd);
         };
@@ -36,7 +31,7 @@ const BestInstructors = () => {
 
     const [ref, inView] = useInView({
         triggerOnce: true,
-        threshold: 0, // Adjust the threshold to 0
+        threshold: 0,
     });
 
     if (instructors.length === 0) {
@@ -50,7 +45,7 @@ const BestInstructors = () => {
         );
     }
 
-    const isMobile = window.innerWidth <= 768; 
+    const isMobile = window.innerWidth <= 768;
 
     return (
         <div className="mt-10">

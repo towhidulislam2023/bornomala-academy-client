@@ -10,16 +10,11 @@ import img3 from '../../../assets/home/slider/group-students-posing-table.jpg';
 import img4 from '../../../assets/home/slider/medium-shot-colleagues-high-five.jpg';
 import img5 from '../../../assets/home/slider/young-english-teacher-doing-her-lessons-online.jpg';
 import { Link } from 'react-router-dom';
-import { motion } from "framer-motion"
+// import { motion } from "framer-motion"
 const Slider = () => {
 
     return (
-        <motion.div
-        
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
-        
+        <div 
         className='z-0'>
             <Swiper
                 pagination={{
@@ -69,7 +64,7 @@ const Slider = () => {
                     </SwiperSlide>
                 
             </Swiper>
-        </motion.div>
+        </div>
     );
 };
 

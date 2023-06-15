@@ -29,8 +29,9 @@ const InstractorDetails = () => {
     // console.log(classes,"classwsasfvsdvds");
     return (
         <div className='my-10'>
-            <img className='w-[100%] rounded-lg md:h-[70vh] mx-auto' src={data&&data.image} alt="" />
+            <img className='w-[20%] rounded-lg  mx-auto' src={data&&data.image} alt="" />
             <h1 className="text-center font-extrabold text-5xl text-success my-6">{data&&data.name}</h1>
+            <hr />
            <div className='grid md:grid-cols-2 gap-10 my-10'>
                 {
                     classes && classes.map(classdata => <ClassCard key={classdata._id} popularclass={classdata}></ClassCard>)

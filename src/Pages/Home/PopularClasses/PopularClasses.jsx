@@ -39,20 +39,31 @@ const ElementInView = ({ children }) => {
 const PopularClasses = () => {
     const [popularClasses] = UsePopularClassess();
 
+    const handleSmoothScroll = () => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the page
+            behavior: 'smooth',
+        });
+    };
+
     return (
-        <ElementInView>
-            <div className="my-10">
-                <h1 className="text-3xl font-extrabold text-center">---Our Popular Classes---</h1>
-                <p className="text-center">"Unlock Your Potential with Our Popular Courses!"</p>
-                <div className="divider"></div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mx-auto">
-                    {popularClasses &&
-                        popularClasses.map((SingalClass) => (
-                            <ClassCard key={SingalClass._id} popularclass={SingalClass}></ClassCard>
-                        ))}
+        <div>
+            <button onClick={handleSmoothScroll}>Scroll to Top</button>
+
+            <ElementInView>
+                <div className="my-10">
+                    <h1 className="text-3xl font-extrabold text-center">---Our Popular Classes---</h1>
+                    <p className="text-center">"Unlock Your Potential with Our Popular Courses!"</p>
+                    <div className="divider"></div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mx-auto">
+                        {popularClasses &&
+                            popularClasses.map((singleClass) => (
+                                <ClassCard key={singleClass._id} popularclass={singleClass} />
+                            ))}
+                    </div>
                 </div>
-            </div>
-        </ElementInView>
+            </ElementInView>
+        </div>
     );
 };
 
