@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import UsePopularClassess from '../../../hook/usePopularClasses/UsePopularClassess';
 import ClassCard from '../../../Sheared/ClassCard/ClassCard';
 import { motion } from 'framer-motion';
+import { FaArrowAltCircleUp } from 'react-icons/fa';
 
 const ElementInView = ({ children }) => {
     const elementRef = useRef(null);
@@ -48,7 +49,7 @@ const PopularClasses = () => {
 
     return (
         <div>
-            <button onClick={handleSmoothScroll}>Scroll to Top</button>
+            <button className='fixed right-0 bottom-0' onClick={handleSmoothScroll}><FaArrowAltCircleUp className='text-5xl text-success'></FaArrowAltCircleUp></button>
 
             <ElementInView>
                 <div className="my-10">
